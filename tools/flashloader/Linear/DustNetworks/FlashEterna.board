@@ -2,6 +2,6 @@
 
 <flash_board>
   <pass>
-    <loader>$TOOLKIT_DIR$\config\flashloader\Linear\DustNetworks\FlashEterna.flash</loader>
+    <loader>$PROJ_DIR$\..\..\..\onchipsdk\tools\flashloader\Linear\DustNetworks\FlashEterna.flash</loader>
   </pass>
 </flash_board>

@@ -8,6 +8,7 @@ Copyright (c) 2013, Dust Networks.  All rights reserved.
 #include "dnm_ucli.h"
 #include "cli_task.h"
 #include "Ver.h"
+#include "airgas_config.h"
 
 //=========================== variables =======================================
 
@@ -46,12 +47,15 @@ void cli_task_init(char* appName, dnm_ucli_cmdDef_t* cliCmds) {
    ASSERT(dnErr==DN_ERR_NONE);
    
    // print appName
-   dnm_ucli_printf("%s app, ver %d.%d.%d.%d\r\n", cli_task_v.appName,
-                                                 VER_MAJOR,
+   dnm_ucli_printf("OCSDK ver %d.%d.%d.%d\r\n",  VER_MAJOR,
                                                  VER_MINOR,
                                                  VER_PATCH,
                                                  VER_BUILD);
-   
+   dnm_ucli_printf("%s app, ver %d.%2.2d.%2.2d\r\n", cli_task_v.appName,
+                                                 FIRMWARE_MAJOR,
+                                                 FIRMWARE_MINOR,
+                                                 FIRMWARE_BUILDNUM);
+			
    // stop here is no CLI commands to register
    if (cli_task_v.cliCmds==NULL) {
       return;
