@@ -6,6 +6,7 @@ Copyright (c) 2013, Dust Networks.  All rights reserved.
 #include "loc_task.h"
 #include "dnm_local.h"
 #include "dn_api_param.h"
+#include "airgas_config.h"
 
 //=========================== defines =========================================
 
@@ -169,6 +170,8 @@ static void locCtrlTask(void* arg) {
    INT16U                         netId;
    INT32U                         eventMask;
    INT8U                          joinDutyCycle;
+   dn_api_swver_t                 swVer={VER_MAJOR,VER_MINOR,VER_PATCH,VER_BUILD};
+   dn_api_set_appinfo_t           setAppInfo={VENDOR_ID,APP_ID,swVer};
       
    
    while (1) { // this is a task, it executes forever
@@ -242,6 +245,16 @@ static void locCtrlTask(void* arg) {
                ASSERT(dnErr==DN_ERR_NONE);
                ASSERT(rc==DN_ERR_NONE);
             }
+            // set app info 
+            dnErr = dnm_loc_setParameterCmd(
+                  DN_API_PARAM_APPINFO,               // paramId
+                  (INT8U*)(&setAppInfo),              // payload
+                  sizeof(dn_api_set_appinfo_t),       // payload length
+                  &rc                                 // return code
+               );
+            ASSERT(dnErr==DN_ERR_NONE);
+            ASSERT(rc==DN_ERR_NONE);
+            
             
             // configure the events you want to receive from the stack
             if (notif_task_v.fJoin) {

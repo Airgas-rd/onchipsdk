@@ -1,5 +1,5 @@
 //**************************************************
-// Eterna.icf - Public external linker configuration file for Eterna.  
+// EternaPublic.icf - external linker configuration file for Eterna.  
 //**************************************************
 
 //Use_loader=1 means that app will be started by loader, 0=by bootloader
@@ -35,7 +35,7 @@
    define region SRAM_CODE =        mem:[from 0xc8000 to 0xc9fff];
 
 // Main stack 
-   define block CSTACK with size = 0x800, alignment = 4{ };
+   define block CSTACK with size = 0x400, alignment = 4{ };
 
 //Read/write values should be initialized by copying from flash.
    initialize by copy with packing = none { readwrite };

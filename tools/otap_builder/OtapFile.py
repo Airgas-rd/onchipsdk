@@ -141,8 +141,8 @@ def make_otap_file(infile, outfile,
         compressed_data = file_data
     
     # pad length to 4-byte boundary
-    if (len(compressed_data) % 4):
-       compressed_data += '\x00' * (4 - len(compressed_data) % 4)
+    if (len(compressed_data) % 16):
+       compressed_data += '\x00' * (16 - len(compressed_data) % 16)
     
     #===== step 3.
     
